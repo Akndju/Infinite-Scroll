@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 body {
   background-color: darkslategray;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,6 +20,9 @@ body {
 h1 {
   margin-bottom: 0;
   text-align: center;
+  font-size: 42px;
+  font-family: 'Marck Script', cursive;
+  margin-bottom: 17px;
 }
 
 .filter-container {
