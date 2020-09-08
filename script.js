@@ -1,8 +1,8 @@
 const postContainer = document.getElementById('post-container');
-const loader = document.getElementById('loader');
+const loader = document.querySelector('.loader');
 const filter = document.getElementById('filter');
 
-let limit = 3;
+let limit = 5;
 let page = 1;
 
 async function getPost() {
@@ -32,4 +32,43 @@ async function showPost() {
   });
 }
 
+function showLoader() {
+  loader.classList.add('show');
+
+  setTimeout(() => {
+    loader.classList.remove('show');
+
+    setTimeout(() => {
+      page++;
+      showPost();
+    }, 300);
+  }, 1000);
+}
+
+function filterPosts(e) {
+  const term = e.target.value.toUpperCase();
+  const posts = document.querySelectorAll('.post');
+
+  posts.forEach((post) => {
+    const title = post.querySelector('.post-title').innerText.toUpperCase();
+    const body = post.querySelector('.post-body').innerText.toUpperCase();
+
+    if (title.indexOf(term) > -1 || body.indexOf(term) > -1) {
+      post.style.display = 'flex';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+}
+
 showPost();
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoader();
+  }
+});
+
+filter.addEventListener('input', filterPosts);
